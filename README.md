@@ -20,3 +20,5 @@ Features:
 Clean and responsive UI
 RecyclerView implementation
 Modern UI components
+Linkedin: https://www.linkedin.com/in/safyan-anwar-06268036a
+email: safyananwar76@gmail.com
