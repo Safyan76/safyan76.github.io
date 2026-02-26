@@ -23,6 +23,7 @@ body.dark{
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
+
 body{
   font-family:'Poppins',sans-serif;
   background:var(--bg);
@@ -60,8 +61,16 @@ header{
   padding:1rem 8%;
   z-index:1000;
 }
-.logo{font-weight:700;color:var(--primary);}
-.theme-toggle{cursor:pointer;font-size:1.2rem;}
+
+.logo{
+  font-weight:700;
+  color:var(--primary);
+}
+
+.theme-toggle{
+  cursor:pointer;
+  font-size:1.2rem;
+}
 
 /* Sections */
 section{
@@ -76,61 +85,115 @@ section{
   transform:translateY(60px);
   transition:1s ease;
 }
+
 section.visible{
   opacity:1;
   transform:translateY(0);
 }
 
-/* HERO */
-.hero h1{font-size:3rem;}
-.typing{color:var(--primary);margin-top:1rem;font-weight:600;}
+/* Projects */
+.projects{
+  background:var(--bg);
+  color:var(--text);
+}
 
-/* PHONE */
-.phone-wrapper{
-  margin-top:4rem;
-  perspective:1200px;
+.projects-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:60px;
 }
-.phone{
-  width:280px;
-  height:560px;
+
+.devices-wrapper{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:80px;
+  flex-wrap:wrap;
+}
+
+.device{
   background:#111;
-  border-radius:45px;
+  border-radius:40px;
   padding:12px;
-  position:relative;
-  box-shadow:0 50px 100px rgba(0,0,0,0.4);
-  transform-style:preserve-3d;
-  transition:transform 0.2s ease;
+  box-shadow:0 25px 50px rgba(0,0,0,0.6);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
 }
-.phone-screen{
+
+.device:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 35px 70px rgba(0,0,0,0.8);
+}
+
+.device.landscape{
+  width:550px;
+  height:300px;
+  border-radius:30px;
+}
+
+.device.portrait{
+  width:260px;
+  height:520px;
+}
+
+.device-screen{
   width:100%;
   height:100%;
-  border-radius:35px;
+  border-radius:25px;
   overflow:hidden;
-  background:black;
 }
-.phone-screen video{
+
+.device-screen iframe{
   width:100%;
   height:100%;
-  object-fit:cover;
+  border:none;
 }
-.phone-notch{
-  position:absolute;
-  top:8px;
-  left:50%;
-  transform:translateX(-50%);
-  width:140px;
-  height:30px;
-  background:black;
+
+/* Project Info */
+.project-info{
+  max-width:800px;
+}
+
+.project-info h2{
+  font-size:32px;
+  margin-bottom:20px;
+}
+
+.project-info p{
+  font-size:18px;
+  line-height:1.7;
+  opacity:0.8;
+}
+
+.tech-stack span{
+  display:inline-block;
+  background:#222;
+  padding:8px 16px;
+  margin:8px;
   border-radius:20px;
-  z-index:10;
+  font-size:14px;
+  transition:0.3s;
 }
-.phone::after{
-  content:"";
-  position:absolute;
-  width:50%;
-  height:100%;
-  background:linear-gradient(120deg,rgba(255,255,255,0.2),transparent);
-  border-radius:45px;
+
+.tech-stack span:hover{
+  background:var(--primary);
+  color:#000;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:30px;
+  padding:12px 28px;
+  background:var(--primary);
+  color:#000;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#00fff5;
 }
 
 /* Cards */
@@ -145,29 +208,47 @@ section.visible{
   max-width:900px;
 }
 
-/* Repo Grid */
 .repo-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:2rem;
   width:100%;
 }
-.repo-card h3{margin-bottom:0.5rem;}
-.repo-meta{color:var(--muted);font-size:0.9rem;margin-top:0.5rem;}
 
-/* Progress Bars */
-.lang-bar{margin:1rem 0;text-align:left;}
-.progress{
-  height:8px;
-  background:#ddd;
-  border-radius:10px;
-  overflow:hidden;
+.repo-meta{
+  color:var(--muted);
+  font-size:0.9rem;
+  margin-top:0.5rem;
 }
-.progress-fill{
-  height:100%;
-  background:var(--primary);
-  width:0;
-  transition:1.5s ease;
+
+.skills-card {
+  text-align: left;
+}
+
+.skill {
+  margin-bottom: 25px;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.progress {
+  height: 10px;
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #00fff5);
+  width: 0;
+  border-radius: 20px;
+  transition: width 1.5s ease;
 }
 
 /* Footer */
@@ -175,6 +256,22 @@ footer{
   padding:2rem;
   text-align:center;
   color:var(--muted);
+}
+
+/* Responsive */
+@media(max-width:992px){
+  .devices-wrapper{
+    flex-direction:column;
+    gap:40px;
+  }
+  .device.landscape{
+    width:100%;
+    height:220px;
+  }
+  .device.portrait{
+    width:220px;
+    height:440px;
+  }
 }
 </style>
 </head>
@@ -185,19 +282,46 @@ footer{
   <div class="theme-toggle" id="themeToggle">🌙</div>
 </header>
 
-<section class="hero">
-  <h1>Hi, I'm Safyan</h1>
-  <div class="typing" id="typing"></div>
+<section class="projects">
+  <div class="projects-container">
 
-  <div class="phone-wrapper">
-    <div class="phone" id="phone">
-      <div class="phone-notch"></div>
-      <div class="phone-screen">
-        <video autoplay muted loop playsinline>
-         <source src="projects-demo.mp4" type="video/mp4">
-        </video>
+    <div class="devices-wrapper">
+
+      <div class="device landscape">
+        <div class="device-screen">
+          <iframe src="https://www.youtube.com/embed/YOUR_LANDSCAPE_VIDEO_ID"
+          allowfullscreen></iframe>
+        </div>
       </div>
+
+      <div class="device portrait">
+        <div class="device-screen">
+          <iframe src="https://www.youtube.com/embed/cVIRb2foleg?si=VI2awDNGN9ZZD_oh"
+          allowfullscreen></iframe>
+        </div>
+      </div>
+
     </div>
+
+    <div class="project-info">
+      <h2>Featured Android Project</h2>
+      <p>
+        A modern Android application built using Kotlin, MVVM,
+        Firebase, Retrofit and Material Design principles.
+      </p>
+
+      <div class="tech-stack">
+        <span>Kotlin</span>
+        <span>MVVM</span>
+        <span>Firebase</span>
+        <span>REST API</span>
+      </div>
+
+      <a href="https://github.com/Safyan76/Waves-Of-Food" target="_blank" class="btn">
+        View Code
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -205,8 +329,61 @@ footer{
   <h2>GitHub Profile</h2>
   <div class="card" id="profileCard">Loading...</div>
 
-  <h2>Top Languages</h2>
-  <div class="card" id="languagesCard"></div>
+  <h2>Technical Skills</h2>
+
+<div class="card skills-card">
+
+  <div class="skill">
+    <div class="skill-header">
+      <span>Java / Kotlin</span>
+      <span>80%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-fill" data-width="70%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-header">
+      <span>C / C++</span>
+      <span>60%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-fill" data-width="60%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-header">
+      <span>JavaScript</span>
+      <span>40%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-fill" data-width="40%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-header">
+      <span>Dart</span>
+      <span>50%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-fill" data-width="50%"></div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-header">
+      <span>Python</span>
+      <span>70%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-fill" data-width="55%"></div>
+    </div>
+  </div>
+
+</div>
 
   <h2>Featured Projects</h2>
   <div class="repo-grid" id="repoGrid"></div>
@@ -229,89 +406,81 @@ toggle.onclick=()=>{
   toggle.textContent=dark?"☀️":"🌙";
   localStorage.setItem("theme",dark?"dark":"light");
 };
-// Demo Videos
-const videos = [
-  "projects-demo.mp4",
-];
-
-let currentVideo = 0;
-const videoElement = document.getElementById("appVideo");
-
-setInterval(() => {
-  currentVideo = (currentVideo + 1) % videos.length;
-  videoElement.src = videos[currentVideo];
-  videoElement.play();
-}, 8000); // change every 8 seconds
-
-// TYPING EFFECT
-const roles=["Android Developer","Kotlin Specialist","Jetpack Compose","Mobile Architect"];
-let i=0,j=0,deleting=false;
-function type(){
-  const current=roles[i];
-  if(deleting) j--; else j++;
-  document.getElementById("typing").textContent=current.substring(0,j);
-  if(!deleting && j===current.length){ deleting=true; setTimeout(type,1000); return;}
-  if(deleting && j===0){ deleting=false; i=(i+1)%roles.length;}
-  setTimeout(type,deleting?50:100);
-}
-type();
 
 // Scroll Reveal
 const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");});
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("visible");
+  });
 },{threshold:0.2});
 document.querySelectorAll("section").forEach(s=>observer.observe(s));
 
-// 3D Tilt Phone
-const phone=document.getElementById("phone");
-document.addEventListener("mousemove",(e)=>{
-  const x=(window.innerWidth/2 - e.pageX)/25;
-  const y=(window.innerHeight/2 - e.pageY)/25;
-  phone.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+// Optional 3D Tilt
+document.querySelectorAll(".device").forEach(device=>{
+  device.addEventListener("mousemove",(e)=>{
+    const rect=device.getBoundingClientRect();
+    const x=(e.clientX-rect.left-rect.width/2)/20;
+    const y=(e.clientY-rect.top-rect.height/2)/20;
+    device.style.transform=`rotateY(${x}deg) rotateX(${-y}deg)`;
+  });
+  device.addEventListener("mouseleave",()=>{
+    device.style.transform="rotateY(0deg) rotateX(0deg)";
+  });
 });
 
-// GITHUB
+// GITHUB API
 async function loadGitHub(){
-  const user=await fetch("https://api.github.com/users/Safyan76").then(r=>r.json());
-  document.getElementById("profileCard").innerHTML=`
-    <img src="${user.avatar_url}" width="100" style="border-radius:50%">
-    <h3>${user.name||user.login}</h3>
-    <p>${user.bio||""}</p>
-    <p>Followers: ${user.followers} | Repos: ${user.public_repos}</p>
-    <a href="${user.html_url}" target="_blank">Visit GitHub</a>
-  `;
-
-  const repos=await fetch("https://api.github.com/users/Safyan76/repos?per_page=100").then(r=>r.json());
-  const repoGrid=document.getElementById("repoGrid");
-  const langCount={};
-
-  repos.slice(0,6).forEach(repo=>{
-    const card=document.createElement("div");
-    card.className="card repo-card";
-    card.innerHTML=`
-      <h3>${repo.name}</h3>
-      <p>${repo.description||"No description provided."}</p>
-      <div class="repo-meta">⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</div>
-      <a href="${repo.html_url}" target="_blank">View Repo</a>
+  try{
+    const user=await fetch("https://api.github.com/users/Safyan76").then(r=>r.json());
+    document.getElementById("profileCard").innerHTML=`
+      <img src="${user.avatar_url}" width="100" style="border-radius:50%">
+      <h3>${user.name||user.login}</h3>
+      <p>${user.bio||""}</p>
+      <p>Followers: ${user.followers} | Repos: ${user.public_repos}</p>
+      <a href="${user.html_url}" target="_blank">Visit GitHub</a>
     `;
-    repoGrid.appendChild(card);
-    if(repo.language) langCount[repo.language]=(langCount[repo.language]||0)+1;
-  });
 
-  const total=Object.values(langCount).reduce((a,b)=>a+b,0);
-  const langCard=document.getElementById("languagesCard");
-  Object.entries(langCount).sort((a,b)=>b[1]-a[1]).slice(0,5).forEach(([lang,count])=>{
-    const percent=Math.round((count/total)*100);
-    const div=document.createElement("div");
-    div.className="lang-bar";
-    div.innerHTML=`
-      <span>${lang} (${percent}%)</span>
-      <div class="progress">
-        <div class="progress-fill" style="width:${percent}%"></div>
-      </div>
-    `;
-    langCard.appendChild(div);
+    const repos=await fetch("https://api.github.com/users/Safyan76/repos?per_page=100")
+    .then(r=>r.json());
+
+    const repoGrid=document.getElementById("repoGrid");
+    const langCount={};
+
+    repos.slice(0,6).forEach(repo=>{
+      const card=document.createElement("div");
+      card.className="card";
+      card.innerHTML=`
+        <h3>${repo.name}</h3>
+        <p>${repo.description||"No description provided."}</p>
+        <div class="repo-meta">⭐ ${repo.stargazers_count} | 🍴 ${repo.forks_count}</div>
+        <a href="${repo.html_url}" target="_blank">View Repo</a>
+      `;
+      repoGrid.appendChild(card);
+
+      if(repo.language)
+        langCount[repo.language]=(langCount[repo.language]||0)+1;
+    });
+
+      // Animate Skill Bars on Scroll
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bars = entry.target.querySelectorAll(".progress-fill");
+      bars.forEach(bar => {
+        bar.style.width = bar.getAttribute("data-width");
+      });
+    }
   });
+}, { threshold: 0.3 });
+
+const skillsCard = document.querySelector(".skills-card");
+if (skillsCard) {
+  skillObserver.observe(skillsCard);
+}
+
+  }catch(err){
+    document.getElementById("profileCard").innerText="Failed to load GitHub data.";
+  }
 }
 loadGitHub();
 </script>
